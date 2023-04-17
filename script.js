@@ -24,6 +24,10 @@ function updateHeadingsAndSeparatorsVisibility() {
   }
 }
 
+// Other functions and event listeners remain unchanged
+
+// Other functions and event listeners remain unchanged
+
 document.getElementById("task-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -52,6 +56,23 @@ document.getElementById("task-form").addEventListener("submit", function (event)
 
   // Append the new list item to the task list
   taskList.appendChild(li);
+
+  // Set the background color, border color, and pulsing box shadow of the list item and buttons based on the color toggle switch state
+  const colorToggle = document.getElementById("color-toggle");
+  if (colorToggle.checked) {
+    li.style.backgroundColor = "white";
+    li.style.borderColor = "#9c27b0";
+    li.style.color = "#9c27b0";
+    li.style.animationName = "pulse-purple";
+    completeBtn.style.backgroundColor = "#9c27b0";
+    completeBtn.style.color = "white";
+    completeBtn.style.animationName = "pulse-purple";
+    deleteBtn.style.backgroundColor = "#9c27b0";
+    deleteBtn.style.color = "white";
+    deleteBtn.style.animationName = "pulse-purple";
+  } else {
+    li.style.backgroundColor = "#222";
+  }
 
   // Clear the input field
   taskInput.value = "";
@@ -83,3 +104,61 @@ document.getElementById("task-form").addEventListener("submit", function (event)
     updateHeadingsAndSeparatorsVisibility();
   });
 });
+
+// The rest of the code remains unchanged
+
+
+// The rest of the code remains unchanged
+
+
+// The rest of the code remains unchanged
+
+
+const toggleColorScheme = () => {
+  const colorToggle = document.getElementById("color-toggle");
+  const taskInput = document.getElementById("task-input");
+
+  if (colorToggle.checked) {
+    document.body.style.backgroundColor = "white";
+    document.body.style.color = "#9c27b0";
+    taskInput.style.backgroundColor = "white";
+    document.querySelectorAll("input, button, li, li span.completed").forEach((elem) => {
+      elem.style.borderColor = "#9c27b0";
+      elem.style.color = "#9c27b0";
+      elem.style.animationName = "pulse-purple";
+    });
+    document.querySelectorAll("button, button[type='submit']").forEach((elem) => {
+      elem.style.backgroundColor = "#9c27b0";
+      elem.style.color = "white";
+    });
+    document.querySelectorAll("li").forEach((elem) => {
+      elem.style.backgroundColor = "white";
+    });
+  } else {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "#21ff00";
+    taskInput.style.backgroundColor = "#222";
+    document.querySelectorAll("input, button, li, li span.completed").forEach((elem) => {
+      elem.style.borderColor = "#21ff00";
+      elem.style.color = "#21ff00";
+      elem.style.animationName = "pulse-green";
+    });
+    document.querySelectorAll("button, button[type='submit']").forEach((elem) => {
+      elem.style.backgroundColor = "#21ff00";
+      elem.style.color = "white";
+    });
+    document.querySelectorAll("li").forEach((elem) => {
+      elem.style.backgroundColor = "#222";
+    });
+  }
+
+  const separatorColor = colorToggle.checked ? "#9c27b0" : "white";
+  document.querySelectorAll(".separator").forEach((separator) => {
+    separator.style.backgroundColor = separatorColor;
+  });
+};
+
+
+
+document.getElementById("color-toggle").addEventListener("change", toggleColorScheme);
+
