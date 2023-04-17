@@ -60,6 +60,12 @@ input {
   animation: pulse 2s infinite;
 }
 
+#task-input {
+  height: 75px; /* Adjust the height as desired */
+  font-size: 24px; /* Adjust the font size as desired */
+  padding: 0 10px; /* Add padding to the input field */
+}
+
 button {
   padding: 5px;
   border: none;

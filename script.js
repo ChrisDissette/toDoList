@@ -1,3 +1,26 @@
+function initialStyles() {
+  const colorToggle = document.getElementById("color-toggle");
+  const taskInput = document.getElementById("task-input");
+
+  if (!colorToggle.checked) {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "#21ff00";
+    taskInput.style.backgroundColor = "#222";
+    document.querySelectorAll("input, button, li, li span.completed").forEach((elem) => {
+      elem.style.borderColor = "#21ff00";
+      elem.style.color = "#21ff00";
+      elem.style.animationName = "pulse-green";
+    });
+    document.querySelectorAll("button, button[type='submit']").forEach((elem) => {
+      elem.style.backgroundColor = "#21ff00";
+      elem.style.color = "white";
+    });
+    document.querySelectorAll("li").forEach((elem) => {
+      elem.style.backgroundColor = "#222";
+    });
+  }
+}
+
 function updateHeadingsAndSeparatorsVisibility() {
   const taskList = document.getElementById("task-list");
   const incompleteHeading = document.getElementById("incomplete-heading");
@@ -24,37 +47,30 @@ function updateHeadingsAndSeparatorsVisibility() {
   }
 }
 
-
 document.getElementById("task-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
   const taskInput = document.getElementById("task-input");
   const taskList = document.getElementById("task-list");
 
-  // Create a new list item
   const li = document.createElement("li");
 
-  // Create a task label
   const taskLabel = document.createElement("span");
   taskLabel.textContent = taskInput.value;
   li.appendChild(taskLabel);
 
-  // Create a "Mark as Complete" button
   const completeBtn = document.createElement("button");
   completeBtn.textContent = "Mark as Complete";
   completeBtn.classList.add("complete-btn");
   li.appendChild(completeBtn);
 
-  // Create a delete button
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
   deleteBtn.classList.add("delete-btn");
   li.appendChild(deleteBtn);
 
-  // Append the new list item to the task list
   taskList.appendChild(li);
 
-  // Set the background color, border color, and pulsing box shadow of the list item and buttons based on the color toggle switch state
   const colorToggle = document.getElementById("color-toggle");
   if (colorToggle.checked) {
     li.style.backgroundColor = "white";
@@ -69,15 +85,15 @@ document.getElementById("task-form").addEventListener("submit", function (event)
     deleteBtn.style.animationName = "pulse-purple";
   } else {
     li.style.backgroundColor = "#222";
+    li.style.borderColor = "#21ff00";
+    li.style.color = "#21ff00";
+    li.style.animationName = "pulse-green";
   }
 
-  // Clear the input field
   taskInput.value = "";
 
-  // Update task headings and separators visibility
   updateHeadingsAndSeparatorsVisibility();
 
-  // Add event listeners
   completeBtn.addEventListener("click", function () {
     taskLabel.classList.toggle("completed");
     const completedList = document.getElementById("completed-list");
@@ -101,7 +117,6 @@ document.getElementById("task-form").addEventListener("submit", function (event)
     updateHeadingsAndSeparatorsVisibility();
   });
 });
-
 
 const toggleColorScheme = () => {
   const colorToggle = document.getElementById("color-toggle");
@@ -145,9 +160,14 @@ const toggleColorScheme = () => {
   document.querySelectorAll(".separator").forEach((separator) => {
     separator.style.backgroundColor = separatorColor;
   });
+
+  document.querySelectorAll("li").forEach((elem) => {
+    if (!colorToggle.checked) {
+      elem.style.animationName = "pulse-green";
+    }
+  });
 };
 
-
-
 document.getElementById("color-toggle").addEventListener("change", toggleColorScheme);
+initialStyles();
 
