@@ -24,9 +24,6 @@ function updateHeadingsAndSeparatorsVisibility() {
   }
 }
 
-// Other functions and event listeners remain unchanged
-
-// Other functions and event listeners remain unchanged
 
 document.getElementById("task-form").addEventListener("submit", function (event) {
   event.preventDefault();
@@ -104,14 +101,6 @@ document.getElementById("task-form").addEventListener("submit", function (event)
     updateHeadingsAndSeparatorsVisibility();
   });
 });
-
-// The rest of the code remains unchanged
-
-
-// The rest of the code remains unchanged
-
-
-// The rest of the code remains unchanged
 
 
 const toggleColorScheme = () => {
